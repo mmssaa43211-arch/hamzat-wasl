@@ -2,18 +2,16 @@ import Link from 'next/link';
 
 export default function HomePage() {
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-background text-foreground p-6 text-center">
-      <h1 className="text-5xl font-bold mb-6">همزة وصل</h1>
-      <p className="text-xl max-w-md text-muted-foreground mb-8">
-        اربط مجتمعك بهمسة وصل: منصة تهدف للمساعدة الثقافية الذكية.
-      </p>
-      <div className="flex gap-4">
-        <Link href="/login" className="px-6 py-3 bg-primary text-primary-foreground rounded-lg font-medium hover:opacity-90 transition">
+    <div style={{ textAlign: 'center', marginTop: '50px', fontFamily: 'sans-serif' }}>
+      <h1>مرحباً بك في منصة همزة وصل</h1>
+      <p>تم الانتهاء من النسخة التجريبية بالكامل.</p>
+      <div style={{ marginTop: '20px' }}>
+        <a href="/login" style={{ margin: '10px', padding: '10px 20px', border: '1px solid #ccc' }}>
           تسجيل الدخول
-        </Link>
-        <Link href="/register" className="px-6 py-3 bg-muted text-foreground border rounded-lg font-medium hover:bg-muted/80 transition">
+        </a>
+        <a href="/register" style={{ margin: '10px', padding: '10px 20px', border: '1px solid #ccc' }}>
           تسجيل
-        </Link>
+        </a>
       </div>
     </div>
   );
