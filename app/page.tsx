@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 export default function Home() {
   const [text, setText] = useState('');
   const [messages, setMessages] = useState([
-    { id: 1, user: 'مساعد همزة وصل', icon: '🤖', badge: 'مطور', time: 'اليوم، 9:45 م', text: 'يا هلا والله يا متعب! الواجهة الحين منورة وجاهزة للتجربة والجلد. جرب اكتب في خانة المحادثة تحت وشوف الفخامة! 👇' }
+    { id: 1, user: 'مساعد همزة وصل', icon: '🤖', badge: 'مطور', time: 'اليوم، 9:45 م', text: 'يا هلا والله يا متعب! ارحب في مجلسك الجديد الحين. الواجهة منورة بالهوية الشقردية، جرب اكتب في خانة المحادثة تحت وشوف الفخامة! 👇' }
   ]);
 
   const handleSend = () => {
@@ -24,24 +24,24 @@ export default function Home() {
     <>
       <style>{`
         .discord-container { display: flex; height: 100vh; background-color: #313338; color: #dbdee1; font-family: sans-serif; }
-        .server-list { width: 72px; background-color: #1e1f22; display: flex; flexDirection: column; align-items: center; padding-top: 12px; gap: 8px; box-sizing: border-box; }
+        .server-list { width: 72px; background-color: #1e1f22; display: flex; flex-direction: column; align-items: center; padding-top: 12px; gap: 8px; box-sizing: border-box; }
         .server-icon { width: 48px; height: 48px; background-color: #5865f2; border-radius: 16px; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; cursor: pointer; }
         .server-icon-sub { width: 48px; height: 48px; background-color: #2b2d31; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 20px; cursor: pointer; }
         .server-separator { width: 32px; height: 2px; background-color: #35363c; margin: 4px 0; }
-        .channel-list { width: 240px; background-color: #2b2d31; display: flex; flexDirection: column; }
+        .channel-list { width: 240px; background-color: #2b2d31; display: flex; flex-direction: column; }
         .server-header { height: 48px; border-bottom: 1px solid #1f2023; display: flex; align-items: center; padding: 0 16px; font-weight: bold; color: white; }
-        .channels-wrapper { flex: 1; padding: 12px 8px; display: flex; flexDirection: column; gap: 16px; }
+        .channels-wrapper { flex: 1; padding: 12px 8px; display: flex; flex-direction: column; gap: 16px; }
         .channel-category { font-size: 12px; font-weight: bold; color: #949ba4; padding: 0 8px; margin-bottom: 4px; }
         .channel-item { color: #949ba4; padding: 6px 8px; border-radius: 4px; cursor: pointer; font-size: 14px; margin-bottom: 2px; }
         .channel-item.active { background-color: #404249; color: white; }
         .user-profile { height: 56px; background-color: #232428; display: flex; align-items: center; padding: 0 8px; gap: 8px; }
         .user-avatar { width: 32px; height: 32px; background-color: #5865f2; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 14px; }
-        .chat-area { flex: 1; background-color: #313338; display: flex; flexDirection: column; }
+        .chat-area { flex: 1; background-color: #313338; display: flex; flex-direction: column; }
         .chat-header { height: 48px; border-bottom: 1px solid #1f2023; display: flex; align-items: center; padding: 0 16px; gap: 8px; }
-        .messages-container { flex: 1; padding: 16px; overflow-y: auto; display: flex; flexDirection: column; gap: 16px; justify-content: flex-end; }
+        .messages-container { flex: 1; padding: 16px; overflow-y: auto; display: flex; flex-direction: column; gap: 16px; justify-content: flex-end; }
         .message-row { display: flex; align-items: flex-start; gap: 16px; }
         .message-avatar { width: 40px; height: 40px; background-color: #5865f2; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 16px; }
-        .message-content { display: flex; flexDirection: column; text-align: right; }
+        .message-content { display: flex; flex-direction: column; text-align: right; }
         .message-meta { display: flex; align-items: baseline; gap: 8px; }
         .user-badge { font-size: 10px; background-color: #5865f2; color: white; padding: 0 4px; border-radius: 4px; }
         .input-area { padding: 16px; background-color: #313338; }
@@ -65,12 +65,20 @@ export default function Home() {
             <span>منصة همزة وصل</span>
           </div>
           <div className="channels-wrapper">
+            {/* قنوات نصية */}
             <div>
-              <div className="channel-category">#️⃣ القنوات النصية</div>
+              <div className="channel-category">#️⃣ المجالس النصية</div>
               <div>
-                <div className="channel-item active">💬 المحادثة-العامة</div>
-                <div className="channel-item">📢 الإعلانات</div>
-                <div className="channel-item">🛠️ الدعم-الفني</div>
+                <div className="channel-item active">💬 المجلس-العام</div>
+                <div className="channel-item">📢 علوم-المنصة</div>
+                <div className="channel-item">🛠️ الفزعة</div>
+              </div>
+            </div>
+            {/* قنوات صوتية */}
+            <div>
+              <div className="channel-category">🔊 المجالس الصوتية</div>
+              <div>
+                <div className="channel-item">🔊 ديوانية الصوت</div>
               </div>
             </div>
           </div>
@@ -92,7 +100,7 @@ export default function Home() {
         <div className="chat-area">
           <div className="chat-header">
             <span style={{ fontSize: '20px', color: '#80848e' }}>#</span>
-            <span style={{ fontWeight: 'bold', color: 'white' }}>المحادثة-العامة</span>
+            <span style={{ fontWeight: 'bold', color: 'white' }}>المجلس-العام</span>
           </div>
 
           {/* عرض الرسائل الحية */}
@@ -120,7 +128,7 @@ export default function Home() {
                 value={text}
                 onChange={(e) => setText(e.target.value)}
                 onKeyDown={(e) => e.key === 'Enter' && handleSend()}
-                placeholder="اكتب رسالتك هنا في #المحادثة-العامة..." 
+                placeholder="اكتب رسالتك هنا في #المجلس-العام..." 
                 className="message-input"
               />
               <button onClick={handleSend} className="send-btn">إرسال</button>
