@@ -5,7 +5,7 @@ export default function Home() {
   const [activeChannel, setActiveChannel] = useState('💬 المجلس-العام');
   const [text, setText] = useState('');
   
-  // حالات تفاعلية للأزرار المقفلة سابقاً
+  // حالات تفاعلية للأزرار الصوتية والبوب أب
   const [isVoiceConnected, setIsVoiceConnected] = useState(false);
   const [activeVoiceChannel, setActiveVoiceChannel] = useState('');
   const [isMuted, setIsMuted] = useState(false);
@@ -17,7 +17,7 @@ export default function Home() {
       { id: 1, user: 'مساعد همزة وصل', icon: '🤖', badge: 'مطور', time: 'اليوم، 9:45 م', text: 'يا هلا والله يا متعب! ارحب في مجلسك العام. كل شيء الحين انفك عنه القفل وصار تفاعلي، جرب تضغط القنوات الصوتية أو الأزرار اللي عاليمين وشوف المتعة! 👇' }
     ],
     '📢 علوم-المنصة': [
-      { id: 1, user: 'متعب', icon: 'M', badge: 'صاحب المنصة', time: 'اليوم, 10:00 م', text: '📢 تم فك القفل عن جميع الأزرار والاتصال الصوتي في المنصة بنجاح! جربوا الميزات الجديدة الآن. 🚀' }
+      { id: 1, user: 'متعب', icon: 'M', badge: 'صاحب المنصة', time: 'اليوم، 10:00 م', text: '📢 تم فك القفل عن جميع الأزرار والاتصال الصوتي في المنصة بنجاح! جربوا الميزات الجديدة الآن. 🚀' }
     ],
     '🛠️ الفزعة': [
       { id: 1, user: 'مساعد همزة وصل', icon: '🤖', badge: 'مطور', time: 'اليوم، 10:15 م', text: 'أرحب يا شقردي في قسم الفزعة! هنا كل شيء شغال وجاهز لخدمتك والدعم الفني السريع. 🛠️🤝' }
@@ -71,8 +71,6 @@ export default function Home() {
         .channel-item:hover { background-color: #35373c; color: #dbdee1; }
         .channel-item.active { background-color: #404249; color: white; font-weight: bold; }
         .voice-status { font-size: 11px; color: #23a55a; font-weight: normal; }
-        
-        /* صندوق حالة الصوت الجديد */
         .voice-connected-box { background-color: #111214; padding: 10px; border-bottom: 1px solid #1f2023; display: flex; flex-direction: column; gap: 8px; }
         .voice-info { display: flex; align-items: center; gap: 8px; color: #23a55a; font-size: 13px; font-weight: bold; }
         .voice-actions { display: flex; justify-content: space-around; }
@@ -80,7 +78,6 @@ export default function Home() {
         .voice-btn:hover { background-color: #35373c; color: white; }
         .voice-btn.disconnect { color: #f23f43; }
         .voice-btn.disconnect:hover { background-color: #f23f43; color: white; }
-
         .user-profile { height: 56px; background-color: #232428; display: flex; align-items: center; padding: 0 8px; gap: 8px; }
         .user-avatar { width: 32px; height: 32px; background-color: #5865f2; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 14px; }
         .chat-area { flex: 1; background-color: #313338; display: flex; flex-direction: column; }
@@ -95,13 +92,38 @@ export default function Home() {
         .input-wrapper { background-color: #383a40; border-radius: 8px; padding: 10px 16px; display: flex; align-items: center; gap: 16px; }
         .message-input { background: none; border: none; flex: 1; outline: none; color: #dbdee1; font-size: 14px; text-align: right; }
         .send-btn { background-color: #5865f2; color: white; border: none; padding: 6px 16px; border-radius: 4px; cursor: pointer; font-size: 14px; font-weight: 500; }
-
-        /* ستايل المودال / البوب أب */
         .modal-overlay { position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(0,0,0,0.7); display: flex; align-items: center; justify-content: center; z-index: 999; }
         .modal-box { background-color: #313338; padding: 24px; border-radius: 8px; width: 400px; text-align: center; border: 1px solid #1f2023; box-shadow: 0 4px 20px rgba(0,0,0,0.5); }
         .modal-title { font-size: 18px; font-weight: bold; color: white; margin-bottom: 12px; }
         .modal-desc { font-size: 14px; color: #b4bac1; margin-bottom: 20px; }
         .modal-input { width: 100%; padding: 10px; background-color: #1e1f22; border: 1px solid #1f2023; border-radius: 4px; color: white; text-align: right; margin-bottom: 20px; outline: none; }
         .modal-close-btn { background-color: #5865f2; color: white; border: none; padding: 8px 20px; border-radius: 4px; cursor: pointer; font-weight: bold; }
-        .modal-close-btn
-      
+        .modal-close-btn:hover { background-color: #4752c4; }
+      `}</style>
+
+      <div className="discord-container" dir="rtl">
+        {/* 1. قائمة السيرفرات */}
+        <div className="server-list">
+          <div className="server-icon" onClick={() => setPopupContent('world')}>🌐</div>
+          <div className="server-separator" />
+          <div className="server-icon-sub" onClick={() => setPopupContent('support')}>🤝</div>
+          <div className="server-icon-sub" onClick={() => setPopupContent('add_server')}>➕</div>
+        </div>
+
+        {/* 2. قائمة القنوات */}
+        <div className="channel-list">
+          <div>
+            <div className="server-header">
+              <span>منصة همزة وصل</span>
+            </div>
+            <div className="channels-wrapper">
+              <div>
+                <div className="channel-category">#️⃣ المجالس النصية</div>
+                <div>
+                  <div className={`channel-item ${activeChannel === '💬 المجلس-العام' ? 'active' : ''}`} onClick={() => setActiveChannel('💬 المجلس-العام')}>
+                    <span>💬 المجلس-العام</span>
+                  </div>
+                  <div className={`channel-item ${activeChannel === '📢 علوم-المنصة' ? 'active' : ''}`} onClick={() => setActiveChannel('📢 علوم-المنصة')}>
+                    <span>📢 علوم-المنصة</span>
+                  </div>
+                  <div className={`channel-item ${activeChannel === '🛠️ الفزعة' ? 'active' : ''}`} onClick={() => setActiveChannel('🛠️ الفزعة')}>
