@@ -21,92 +21,113 @@ export default function Home() {
   };
 
   return (
-    <div style={{ display: 'flex', height: '100vh', backgroundColor: '#313338', color: '#dbdee1', fontFamily: 'sans-serif' }} dir="rtl">
-      
-      {/* 1. قائمة السيرفرات */}
-      <div style={{ width: '72px', backgroundColor: '#1e1f22', display: 'flex', flexDirection: 'column', alignItems: 'center', paddingTop: '12px', gap: '8px' }}>
-        <div style={{ width: '48px', height: '48px', backgroundColor: '#5865f2', borderRadius: '16px', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', fontWeight: 'bold', cursor: 'pointer' }}>🌐</div>
-        <div style={{ width: '32px', height: '2px', backgroundColor: '#35363c', margin: '4px 0' }} />
-        <div style={{ width: '48px', height: '48px', backgroundColor: '#2b2d31', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '20px', cursor: 'pointer' }}>🤝</div>
-        <div style={{ width: '48px', height: '48px', backgroundColor: '#2b2d31', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '20px', cursor: 'pointer' }}>➕</div>
-      </div>
+    <>
+      <style>{`
+        .discord-container { display: flex; height: 100vh; background-color: #313338; color: #dbdee1; font-family: sans-serif; }
+        .server-list { width: 72px; background-color: #1e1f22; display: flex; flexDirection: column; align-items: center; padding-top: 12px; gap: 8px; box-sizing: border-box; }
+        .server-icon { width: 48px; height: 48px; background-color: #5865f2; border-radius: 16px; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; cursor: pointer; }
+        .server-icon-sub { width: 48px; height: 48px; background-color: #2b2d31; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 20px; cursor: pointer; }
+        .server-separator { width: 32px; height: 2px; background-color: #35363c; margin: 4px 0; }
+        .channel-list { width: 240px; background-color: #2b2d31; display: flex; flexDirection: column; }
+        .server-header { height: 48px; border-bottom: 1px solid #1f2023; display: flex; align-items: center; padding: 0 16px; font-weight: bold; color: white; }
+        .channels-wrapper { flex: 1; padding: 12px 8px; display: flex; flexDirection: column; gap: 16px; }
+        .channel-category { font-size: 12px; font-weight: bold; color: #949ba4; padding: 0 8px; margin-bottom: 4px; }
+        .channel-item { color: #949ba4; padding: 6px 8px; border-radius: 4px; cursor: pointer; font-size: 14px; margin-bottom: 2px; }
+        .channel-item.active { background-color: #404249; color: white; }
+        .user-profile { height: 56px; background-color: #232428; display: flex; align-items: center; padding: 0 8px; gap: 8px; }
+        .user-avatar { width: 32px; height: 32px; background-color: #5865f2; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 14px; }
+        .chat-area { flex: 1; background-color: #313338; display: flex; flexDirection: column; }
+        .chat-header { height: 48px; border-bottom: 1px solid #1f2023; display: flex; align-items: center; padding: 0 16px; gap: 8px; }
+        .messages-container { flex: 1; padding: 16px; overflow-y: auto; display: flex; flexDirection: column; gap: 16px; justify-content: flex-end; }
+        .message-row { display: flex; align-items: flex-start; gap: 16px; }
+        .message-avatar { width: 40px; height: 40px; background-color: #5865f2; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 16px; }
+        .message-content { display: flex; flexDirection: column; text-align: right; }
+        .message-meta { display: flex; align-items: baseline; gap: 8px; }
+        .user-badge { font-size: 10px; background-color: #5865f2; color: white; padding: 0 4px; border-radius: 4px; }
+        .input-area { padding: 16px; background-color: #313338; }
+        .input-wrapper { background-color: #383a40; border-radius: 8px; padding: 10px 16px; display: flex; align-items: center; gap: 16px; }
+        .message-input { background: none; border: none; flex: 1; outline: none; color: #dbdee1; font-size: 14px; text-align: right; }
+        .send-btn { background-color: #5865f2; color: white; border: none; padding: 6px 16px; border-radius: 4px; cursor: pointer; font-size: 14px; font-weight: 500; }
+      `}</style>
 
-      {/* 2. قائمة القنوات */}
-      <div style={{ width: '240px', backgroundColor: '#2b2d31', display: 'flex', flexDirection: 'column' }}>
-        <div style={{ height: '48px', borderBottom: '1px solid #1f2023', display: 'flex', alignItems: 'center', justifyContent: 'between', padding: '0 16px', fontWeight: 'bold', color: 'white' }}>
-          <span>منصة همزة وصل</span>
+      <div className="discord-container" dir="rtl">
+        {/* 1. قائمة السيرفرات */}
+        <div className="server-list">
+          <div className="server-icon">🌐</div>
+          <div className="server-separator" />
+          <div className="server-icon-sub">🤝</div>
+          <div className="server-icon-sub">➕</div>
         </div>
-        <div style={{ flex: 1, padding: '12px 8px', display: 'flex', flexDirection: 'column', gap: '16px' }}>
-          <div>
-            <div style={{ fontSize: '12px', fontWeight: 'bold', color: '#949ba4', padding: '0 8px', marginBottom: '4px' }}>#️⃣ القنوات النصية</div>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '2px' }}>
-              <div style={{ backgroundColor: '#404249', color: 'white', padding: '6px 8px', borderRadius: '4px', cursor: 'pointer', fontSize: '14px' }}>💬 المحادثة-العامة</div>
-              <div style={{ color: '#949ba4', padding: '6px 8px', borderRadius: '4px', cursor: 'pointer', fontSize: '14px' }}>📢 الإعلانات</div>
-              <div style={{ color: '#949ba4', padding: '6px 8px', borderRadius: '4px', cursor: 'pointer', fontSize: '14px' }}>🛠️ الدعم-الفني</div>
+
+        {/* 2. قائمة القنوات */}
+        <div className="channel-list">
+          <div className="server-header">
+            <span>منصة همزة وصل</span>
+          </div>
+          <div className="channels-wrapper">
+            <div>
+              <div className="channel-category">#️⃣ القنوات النصية</div>
+              <div>
+                <div className="channel-item active">💬 المحادثة-العامة</div>
+                <div className="channel-item">📢 الإعلانات</div>
+                <div className="channel-item">🛠️ الدعم-الفني</div>
+              </div>
+            </div>
+          </div>
+          {/* بروفايل المستخدم بالأسفل */}
+          <div className="user-profile">
+            <div className="user-avatar">M</div>
+            <div style={{ display: 'flex', flexDirection: 'column', textAlign: 'right', flex: 1 }}>
+              <span style={{ fontSize: '14px', fontWeight: 'bold', color: 'white' }}>متعب</span>
+              <span style={{ fontSize: '12px', color: '#949ba4' }}>#0001</span>
+            </div>
+            <div style={{ color: '#b5bac1', display: 'flex', gap: '4px' }}>
+              <button style={{ background: 'none', border: 'none', color: 'inherit', cursor: 'pointer', fontSize: '16px' }}>🎙️</button>
+              <button style={{ background: 'none', border: 'none', color: 'inherit', cursor: 'pointer', fontSize: '16px' }}>⚙️</button>
             </div>
           </div>
         </div>
-        {/* بروفايل متعب بالأسفل */}
-        <div style={{ height: '56px', backgroundColor: '#232428', display: 'flex', alignItems: 'center', padding: '0 8px', gap: '8px' }}>
-          <div style={{ width: '32px', height: '32px', backgroundColor: '#5865f2', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', fontWeight: 'bold', fontSize: '14px' }}>M</div>
-          <div style={{ display: 'flex', flexDirection: 'column', textAlign: 'right', flex: 1 }}>
-            <span style={{ fontSize: '14px', fontWeight: 'bold', color: 'white' }}>متعب</span>
-            <span style={{ fontSize: '12px', color: '#949ba4' }}>#0001</span>
-          </div>
-          <div style={{ color: '#b5bac1', display: 'flex', gap: '4px' }}>
-            <button style={{ background: 'none', border: 'none', color: 'inherit', cursor: 'pointer', fontSize: '16px' }}>🎙️</button>
-            <button style={{ background: 'none', border: 'none', color: 'inherit', cursor: 'pointer', fontSize: '16px' }}>⚙️</button>
-          </div>
-        </div>
-      </div>
 
-      {/* 3. منطقة الدردشة الرئيسية */}
-      <div style={{ flex: 1, backgroundColor: '#313338', display: 'flex', flexDirection: 'column' }}>
-        <div style={{ height: '48px', borderBottom: '1px solid #1f2023', display: 'flex', alignItems: 'center', padding: '0 16px', gap: '8px' }}>
-          <span style={{ fontSize: '20px', color: '#80848e' }}>#</span>
-          <span style={{ fontWeight: 'bold', color: 'white' }}>المحادثة-العامة</span>
-        </div>
+        {/* 3. منطقة الدردشة الرئيسية */}
+        <div className="chat-area">
+          <div className="chat-header">
+            <span style={{ fontSize: '20px', color: '#80848e' }}>#</span>
+            <span style={{ fontWeight: 'bold', color: 'white' }}>المحادثة-العامة</span>
+          </div>
 
-        {/* عرض الرسائل الحية */}
-        <div style={{ flex: 1, padding: '16px', overflowY: 'auto', display: 'flex', flexDirection: 'column', gap: '16px', justifyContent: 'flex-end' }}>
-          {messages.map((msg) => (
-            <div key={msg.id} style={{ display: 'flex', alignItems: 'flex-start', gap: '16px' }}>
-              <div style={{ width: '40px', height: '40px', backgroundColor: '#5865f2', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', fontWeight: 'bold', fontSize: '16px' }}>
-                {msg.icon}
-              </div>
-              <div style={{ display: 'flex', flexDirection: 'column', textAlign: 'right' }}>
-                <div style={{ display: 'flex', alignItems: 'baseline', gap: '8px' }}>
-                  <span style={{ fontWeight: 'bold', color: 'white', fontSize: '14px' }}>{msg.user}</span>
-                  <span style={{ fontSize: '10px', backgroundColor: '#5865f2', color: 'white', padding: '0 4px', borderRadius: '4px' }}>{msg.badge}</span>
-                  <span style={{ fontSize: '12px', color: '#949ba4' }}>{msg.time}</span>
+          {/* عرض الرسائل الحية */}
+          <div className="messages-container">
+            {messages.map((msg) => (
+              <div key={msg.id} className="message-row">
+                <div className="message-avatar">{msg.icon}</div>
+                <div className="message-content">
+                  <div className="message-meta">
+                    <span style={{ fontWeight: 'bold', color: 'white', fontSize: '14px' }}>{msg.user}</span>
+                    <span className="user-badge">{msg.badge}</span>
+                    <span style={{ fontSize: '12px', color: '#949ba4' }}>{msg.time}</span>
+                  </div>
+                  <p style={{ fontSize: '14px', color: '#dbdee1', marginTop: '4px', margin: 0 }}>{msg.text}</p>
                 </div>
-                <p style={{ fontSize: '14px', color: '#dbdee1', marginTop: '4px', margin: 0 }}>{msg.text}</p>
               </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
 
-        {/* خانة الكتابة الشغالة */}
-        <div style={{ padding: '16px', backgroundColor: '#313338' }}>
-          <div style={{ backgroundColor: '#383a40', borderRadius: '8px', padding: '10px 16px', display: 'flex', alignItems: 'center', gap: '16px' }}>
-            <input 
-              type="text" 
-              value={text}
-              onChange={(e) => setText(e.target.value)}
-              onKeyDown={(e) => e.key === 'Enter' && handleSend()}
-              placeholder="اكتب رسالتك هنا في #المحادثة-العامة..." 
-              style={{ background: 'none', border: 'none', flex: 1, outline: 'none', color: '#dbdee1', fontSize: '14px', textAlign: 'right' }}
-            />
-            <button 
-              onClick={handleSend}
-              style={{ backgroundColor: '#5865f2', color: 'white', border: 'none', padding: '6px 16px', borderRadius: '4px', cursor: 'pointer', fontSize: '14px', fontWeight: 'medium' }}
-            >
-              إرسال
-            </button>
+          {/* خانة الكتابة الشغالة */}
+          <div className="input-area">
+            <div className="input-wrapper">
+              <input 
+                type="text" 
+                value={text}
+                onChange={(e) => setText(e.target.value)}
+                onKeyDown={(e) => e.key === 'Enter' && handleSend()}
+                placeholder="اكتب رسالتك هنا في #المحادثة-العامة..." 
+                className="message-input"
+              />
+              <button onClick={handleSend} className="send-btn">إرسال</button>
+            </div>
           </div>
         </div>
       </div>
-
-    </div>
+    </>
   );
 }
