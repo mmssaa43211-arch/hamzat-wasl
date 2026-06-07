@@ -21,88 +21,85 @@ export default function Home() {
   };
 
   return (
-    <div className="flex h-screen bg-[#313338] text-[#dbdee1] font-sans antialiased selection:bg-[#5865f2] selection:text-white" dir="rtl">
+    <div style={{ display: 'flex', height: '100vh', backgroundColor: '#313338', color: '#dbdee1', fontFamily: 'sans-serif' }} dir="rtl">
       
       {/* 1. قائمة السيرفرات */}
-      <div className="w-[72px] bg-[#1e1f22] flex flex-col items-center py-3 gap-2 shrink-0">
-        <div className="w-12 h-12 bg-[#5865f2] rounded-[16px] flex items-center justify-center text-white font-bold cursor-pointer" title="الرئيسية">🌐</div>
-        <div className="w-8 h-[2px] bg-[#35363c] rounded my-1" />
-        <div className="w-12 h-12 bg-[#2b2d31] rounded-[24px] flex items-center justify-center text-xl cursor-pointer hover:bg-[#23a55a] hover:rounded-[16px] hover:text-white" title="سيرفر الدعم">🤝</div>
-        <div className="w-12 h-12 bg-[#2b2d31] rounded-[24px] flex items-center justify-center text-xl cursor-pointer hover:bg-[#5865f2] hover:rounded-[16px] hover:text-white" title="إضافة سيرفر">➕</div>
+      <div style={{ width: '72px', backgroundColor: '#1e1f22', display: 'flex', flexDirection: 'column', alignItems: 'center', paddingTop: '12px', gap: '8px' }}>
+        <div style={{ width: '48px', height: '48px', backgroundColor: '#5865f2', borderRadius: '16px', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', fontWeight: 'bold', cursor: 'pointer' }}>🌐</div>
+        <div style={{ width: '32px', height: '2px', backgroundColor: '#35363c', margin: '4px 0' }} />
+        <div style={{ width: '48px', height: '48px', backgroundColor: '#2b2d31', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '20px', cursor: 'pointer' }}>🤝</div>
+        <div style={{ width: '48px', height: '48px', backgroundColor: '#2b2d31', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '20px', cursor: 'pointer' }}>➕</div>
       </div>
 
       {/* 2. قائمة القنوات */}
-      <div className="w-60 bg-[#2b2d31] flex flex-col shrink-0">
-        <div className="h-12 border-b border-[#1f2023] flex items-center justify-between px-4 font-bold text-white shadow-sm">
+      <div style={{ width: '240px', backgroundColor: '#2b2d31', display: 'flex', flexDirection: 'column' }}>
+        <div style={{ height: '48px', borderBottom: '1px solid #1f2023', display: 'flex', alignItems: 'center', justifyContent: 'between', padding: '0 16px', fontWeight: 'bold', color: 'white' }}>
           <span>منصة همزة وصل</span>
-          <span className="text-sm">🔽</span>
         </div>
-        <div className="flex-1 overflow-y-auto px-2 py-3 space-y-4">
+        <div style={{ flex: 1, padding: '12px 8px', display: 'flex', flexDirection: 'column', gap: '16px' }}>
           <div>
-            <div className="text-xs font-bold text-[#949ba4] px-2 mb-1">#️⃣ القنوات النصية</div>
-            <div className="space-y-[2px]">
-              <div className="bg-[#404249] text-white px-2 py-1.5 rounded flex items-center gap-2 cursor-pointer text-sm font-medium">💬 المحادثة-العامة</div>
-              <div className="text-[#949ba4] hover:bg-[#35373c] hover:text-[#dbdee1] px-2 py-1.5 rounded flex items-center gap-2 cursor-pointer text-sm font-medium transition-colors">📢 الإعلانات</div>
-              <div className="text-[#949ba4] hover:bg-[#35373c] hover:text-[#dbdee1] px-2 py-1.5 rounded flex items-center gap-2 cursor-pointer text-sm font-medium transition-colors">🛠️ الدعم-الفني</div>
+            <div style={{ fontSize: '12px', fontWeight: 'bold', color: '#949ba4', padding: '0 8px', marginBottom: '4px' }}>#️⃣ القنوات النصية</div>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '2px' }}>
+              <div style={{ backgroundColor: '#404249', color: 'white', padding: '6px 8px', borderRadius: '4px', cursor: 'pointer', fontSize: '14px' }}>💬 المحادثة-العامة</div>
+              <div style={{ color: '#949ba4', padding: '6px 8px', borderRadius: '4px', cursor: 'pointer', fontSize: '14px' }}>📢 الإعلانات</div>
+              <div style={{ color: '#949ba4', padding: '6px 8px', borderRadius: '4px', cursor: 'pointer', fontSize: '14px' }}>🛠️ الدعم-الفني</div>
             </div>
           </div>
         </div>
-        {/* بروفايل المستخدم */}
-        <div className="h-14 bg-[#232428] flex items-center justify-between px-2 gap-2">
-          <div className="flex items-center gap-2 p-1 rounded flex-1">
-            <div className="w-8 h-8 bg-[#5865f2] rounded-full flex items-center justify-center text-white font-bold text-xs">M</div>
-            <div className="flex flex-col text-right">
-              <span className="text-sm font-bold text-white">متعب</span>
-              <span className="text-xs text-[#949ba4]">#0001</span>
-            </div>
+        {/* بروفايل متعب بالأسفل */}
+        <div style={{ height: '56px', backgroundColor: '#232428', display: 'flex', alignItems: 'center', padding: '0 8px', gap: '8px' }}>
+          <div style={{ width: '32px', height: '32px', backgroundColor: '#5865f2', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', fontWeight: 'bold', fontSize: '14px' }}>M</div>
+          <div style={{ display: 'flex', flexDirection: 'column', textAlign: 'right', flex: 1 }}>
+            <span style={{ fontSize: '14px', fontWeight: 'bold', color: 'white' }}>متعب</span>
+            <span style={{ fontSize: '12px', color: '#949ba4' }}>#0001</span>
           </div>
-          <div className="flex items-center gap-1 text-[#b5bac1]">
-            <button className="p-1.5 hover:bg-[#35373c] rounded">🎙️</button>
-            <button className="p-1.5 hover:bg-[#35373c] rounded">⚙️</button>
+          <div style={{ color: '#b5bac1', display: 'flex', gap: '4px' }}>
+            <button style={{ background: 'none', border: 'none', color: 'inherit', cursor: 'pointer', fontSize: '16px' }}>🎙️</button>
+            <button style={{ background: 'none', border: 'none', color: 'inherit', cursor: 'pointer', fontSize: '16px' }}>⚙️</button>
           </div>
         </div>
       </div>
 
-      {/* 3. منطقة الدردشة */}
-      <div className="flex-1 bg-[#313338] flex flex-col min-w-0">
-        <div className="h-12 border-b border-[#1f2023] flex items-center px-4 gap-2 shadow-sm shrink-0">
-          <span className="text-xl text-[#80848e]">#</span>
-          <span className="font-bold text-white text-md">المحادثة-العامة</span>
+      {/* 3. منطقة الدردشة الرئيسية */}
+      <div style={{ flex: 1, backgroundColor: '#313338', display: 'flex', flexDirection: 'column' }}>
+        <div style={{ height: '48px', borderBottom: '1px solid #1f2023', display: 'flex', alignItems: 'center', padding: '0 16px', gap: '8px' }}>
+          <span style={{ fontSize: '20px', color: '#80848e' }}>#</span>
+          <span style={{ fontWeight: 'bold', color: 'white' }}>المحادثة-العامة</span>
         </div>
 
         {/* عرض الرسائل الحية */}
-        <div className="flex-1 overflow-y-auto p-4 space-y-4 flex flex-col justify-end">
+        <div style={{ flex: 1, padding: '16px', overflowY: 'auto', display: 'flex', flexDirection: 'column', gap: '16px', justifyContent: 'flex-end' }}>
           {messages.map((msg) => (
-            <div key={msg.id} className="flex items-start gap-4">
-              <div className="w-10 h-10 bg-[#5865f2] rounded-full flex items-center justify-center text-white font-bold text-md shrink-0">
+            <div key={msg.id} style={{ display: 'flex', alignItems: 'flex-start', gap: '16px' }}>
+              <div style={{ width: '40px', height: '40px', backgroundColor: '#5865f2', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', fontWeight: 'bold', fontSize: '16px' }}>
                 {msg.icon}
               </div>
-              <div className="flex flex-col text-right">
-                <div className="flex items-baseline gap-2">
-                  <span className="font-bold text-white text-sm">{msg.user}</span>
-                  <span className="text-[10px] bg-[#5865f2] text-white px-1 rounded font-medium">{msg.badge}</span>
-                  <span className="text-xs text-[#949ba4]">{msg.time}</span>
+              <div style={{ display: 'flex', flexDirection: 'column', textAlign: 'right' }}>
+                <div style={{ display: 'flex', alignItems: 'baseline', gap: '8px' }}>
+                  <span style={{ fontWeight: 'bold', color: 'white', fontSize: '14px' }}>{msg.user}</span>
+                  <span style={{ fontSize: '10px', backgroundColor: '#5865f2', color: 'white', padding: '0 4px', borderRadius: '4px' }}>{msg.badge}</span>
+                  <span style={{ fontSize: '12px', color: '#949ba4' }}>{msg.time}</span>
                 </div>
-                <p className="text-sm text-[#dbdee1] mt-1">{msg.text}</p>
+                <p style={{ fontSize: '14px', color: '#dbdee1', marginTop: '4px', margin: 0 }}>{msg.text}</p>
               </div>
             </div>
           ))}
         </div>
 
         {/* خانة الكتابة الشغالة */}
-        <div className="p-4 bg-[#313338] shrink-0">
-          <div className="bg-[#383a40] rounded-lg px-4 py-2.5 flex items-center gap-4">
+        <div style={{ padding: '16px', backgroundColor: '#313338' }}>
+          <div style={{ backgroundColor: '#383a40', borderRadius: '8px', padding: '10px 16px', display: 'flex', alignItems: 'center', gap: '16px' }}>
             <input 
               type="text" 
               value={text}
               onChange={(e) => setText(e.target.value)}
               onKeyDown={(e) => e.key === 'Enter' && handleSend()}
               placeholder="اكتب رسالتك هنا في #المحادثة-العامة..." 
-              className="bg-transparent flex-1 outline-none text-[#dbdee1] placeholder-[#80848e] text-sm text-right"
+              style={{ background: 'none', border: 'none', flex: 1, outline: 'none', color: '#dbdee1', fontSize: '14px', textAlign: 'right' }}
             />
             <button 
               onClick={handleSend}
-              className="bg-[#5865f2] hover:bg-[#4752c4] text-white px-4 py-1 rounded text-sm font-medium transition-colors"
+              style={{ backgroundColor: '#5865f2', color: 'white', border: 'none', padding: '6px 16px', borderRadius: '4px', cursor: 'pointer', fontSize: '14px', fontWeight: 'medium' }}
             >
               إرسال
             </button>
