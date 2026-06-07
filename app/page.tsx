@@ -2,23 +2,46 @@
 import React, { useState } from 'react';
 
 export default function Home() {
+  // تحديد المجلس النشط حالياً
+  const [activeChannel, setActiveChannel] = useState('💬 المجلس-العام');
   const [text, setText] = useState('');
-  const [messages, setMessages] = useState([
-    { id: 1, user: 'مساعد همزة وصل', icon: '🤖', badge: 'مطور', time: 'اليوم، 9:45 م', text: 'يا هلا والله يا متعب! ارحب في مجلسك الجديد الحين. الواجهة منورة بالهوية الشقردية، جرب اكتب في خانة المحادثة تحت وشوف الفخامة! 👇' }
-  ]);
+
+  // إدارة الرسائل لكل مجلس على حدة
+  const [channelMessages, setChannelMessages] = useState({
+    '💬 المجلس-العام': [
+      { id: 1, user: 'مساعد همزة وصل', icon: '🤖', badge: 'مطور', time: 'اليوم، 9:45 م', text: 'يا هلا والله يا متعب! ارحب في مجلسك العام. هنا السوالف والدردشة الحية مع الأعضاء. جرب اكتب تحت! 👇' }
+    ],
+    '📢 علوم-المنصة': [
+      { id: 1, user: 'متعب', icon: 'M', badge: 'صاحب المنصة', time: 'اليوم، 10:00 م', text: '📢 بسم الله الرحمن الرحيم، تم بحمد الله إطلاق النسخة التجريبية الأولى لمنصة همزة وصل! ترقبوا العلوم الزينة والقادم أفضل بإذن الله. 🚀' }
+    ],
+    '🛠️ الفزعة': [
+      { id: 1, user: 'مساعد همزة وصل', icon: '🤖', badge: 'مطور', time: 'اليوم، 10:15 م', text: 'أرحب يا غالي في قسم الفزعة! عندك مشكلة؟ اقتراح؟ كود مو راضي يشتغل؟ حط استفسارك هنا وأبشر بالفزعة والدعم الفني السريع. 🛠️🤝' }
+    ]
+  });
 
   const handleSend = () => {
     if (!text.trim()) return;
-    setMessages([...messages, {
+    
+    // إضافة الرسالة للمجلس الحالي المفتوح بس
+    const newMsg = {
       id: Date.now(),
       user: 'متعب',
       icon: 'M',
       badge: 'صاحب المنصة',
       time: 'الآن',
       text: text
-    }]);
+    };
+
+    setChannelMessages({
+      ...channelMessages,
+      [activeChannel]: [...channelMessages[activeChannel], newMsg]
+    });
+    
     setText('');
   };
+
+  // جلب اسم المجلس بدون الإيموجي للعرض في الأعلى
+  const getChannelName = (channel) => channel.split(' ')[1] || channel;
 
   return (
     <>
@@ -32,8 +55,9 @@ export default function Home() {
         .server-header { height: 48px; border-bottom: 1px solid #1f2023; display: flex; align-items: center; padding: 0 16px; font-weight: bold; color: white; }
         .channels-wrapper { flex: 1; padding: 12px 8px; display: flex; flex-direction: column; gap: 16px; }
         .channel-category { font-size: 12px; font-weight: bold; color: #949ba4; padding: 0 8px; margin-bottom: 4px; }
-        .channel-item { color: #949ba4; padding: 6px 8px; border-radius: 4px; cursor: pointer; font-size: 14px; margin-bottom: 2px; }
-        .channel-item.active { background-color: #404249; color: white; }
+        .channel-item { color: #949ba4; padding: 6px 8px; border-radius: 4px; cursor: pointer; font-size: 14px; margin-bottom: 2px; transition: background-color 0.2s, color 0.2s; }
+        .channel-item:hover { background-color: #35373c; color: #dbdee1; }
+        .channel-item.active { background-color: #404249; color: white; font-weight: bold; }
         .user-profile { height: 56px; background-color: #232428; display: flex; align-items: center; padding: 0 8px; gap: 8px; }
         .user-avatar { width: 32px; height: 32px; background-color: #5865f2; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 14px; }
         .chat-area { flex: 1; background-color: #313338; display: flex; flex-direction: column; }
@@ -59,7 +83,7 @@ export default function Home() {
           <div className="server-icon-sub">➕</div>
         </div>
 
-        {/* 2. قائمة القنوات */}
+        {/* 2. قائمة القنوات والمجالس */}
         <div className="channel-list">
           <div className="server-header">
             <span>منصة همزة وصل</span>
@@ -69,9 +93,24 @@ export default function Home() {
             <div>
               <div className="channel-category">#️⃣ المجالس النصية</div>
               <div>
-                <div className="channel-item active">💬 المجلس-العام</div>
-                <div className="channel-item">📢 علوم-المنصة</div>
-                <div className="channel-item">🛠️ الفزعة</div>
+                <div 
+                  className={`channel-item ${activeChannel === '💬 المجلس-العام' ? 'active' : ''}`}
+                  onClick={() => setActiveChannel('💬 المجلس-العام')}
+                >
+                  💬 المجلس-العام
+                </div>
+                <div 
+                  className={`channel-item ${activeChannel === '📢 علوم-المنصة' ? 'active' : ''}`}
+                  onClick={() => setActiveChannel('📢 علوم-المنصة')}
+                >
+                  📢 علوم-المنصة
+                </div>
+                <div 
+                  className={`channel-item ${activeChannel === '🛠️ الفزعة' ? 'active' : ''}`}
+                  onClick={() => setActiveChannel('🛠️ الفزعة')}
+                >
+                  🛠️ الفزعة
+                </div>
               </div>
             </div>
             {/* قنوات صوتية */}
@@ -82,7 +121,8 @@ export default function Home() {
               </div>
             </div>
           </div>
-          {/* بروفايل المستخدم بالأسفل */}
+          
+          {/* بروفايل متعب */}
           <div className="user-profile">
             <div className="user-avatar">M</div>
             <div style={{ display: 'flex', flexDirection: 'column', textAlign: 'right', flex: 1 }}>
@@ -96,16 +136,16 @@ export default function Home() {
           </div>
         </div>
 
-        {/* 3. منطقة الدردشة الرئيسية */}
+        {/* 3. منطقة الدردشة المتغيرة بحسب المجلس */}
         <div className="chat-area">
           <div className="chat-header">
             <span style={{ fontSize: '20px', color: '#80848e' }}>#</span>
-            <span style={{ fontWeight: 'bold', color: 'white' }}>المجلس-العام</span>
+            <span style={{ fontWeight: 'bold', color: 'white' }}>{getChannelName(activeChannel)}</span>
           </div>
 
-          {/* عرض الرسائل الحية */}
+          {/* عرض رسائل المجلس المفتوح حالياً */}
           <div className="messages-container">
-            {messages.map((msg) => (
+            {channelMessages[activeChannel].map((msg) => (
               <div key={msg.id} className="message-row">
                 <div className="message-avatar">{msg.icon}</div>
                 <div className="message-content">
@@ -120,7 +160,7 @@ export default function Home() {
             ))}
           </div>
 
-          {/* خانة الكتابة الشغالة */}
+          {/* خانة الكتابة الديناميكية */}
           <div className="input-area">
             <div className="input-wrapper">
               <input 
@@ -128,7 +168,7 @@ export default function Home() {
                 value={text}
                 onChange={(e) => setText(e.target.value)}
                 onKeyDown={(e) => e.key === 'Enter' && handleSend()}
-                placeholder="اكتب رسالتك هنا في #المجلس-العام..." 
+                placeholder={`اكتب رسالتك هنا في #${getChannelName(activeChannel)}...`} 
                 className="message-input"
               />
               <button onClick={handleSend} className="send-btn">إرسال</button>
